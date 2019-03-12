@@ -86,8 +86,7 @@ module.exports = function (
     require.resolve(path.join(__dirname, '..', 'package.json'))
   );
   const appPackage = require(path.join(appPath, 'package.json'));
-  // force the use of npm without having to pass an additional cli arg
-  const useYarn = false; // fs.existsSync(path.join(appPath, 'yarn.lock'));
+  const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
