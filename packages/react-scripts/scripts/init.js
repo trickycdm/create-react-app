@@ -19,40 +19,40 @@ const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const execSync = require('child_process').execSync;
 const spawn = require('react-dev-utils/crossSpawn');
-const { defaultBrowsers } = require('react-dev-utils/browsersHelper');
+const {defaultBrowsers} = require('react-dev-utils/browsersHelper');
 const os = require('os');
 const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 
-function isInGitRepository() {
+function isInGitRepository () {
   try {
-    execSync('git rev-parse --is-inside-work-tree', { stdio: 'ignore' });
+    execSync('git rev-parse --is-inside-work-tree', {stdio: 'ignore'});
     return true;
   } catch (e) {
     return false;
   }
 }
 
-function isInMercurialRepository() {
+function isInMercurialRepository () {
   try {
-    execSync('hg --cwd . root', { stdio: 'ignore' });
+    execSync('hg --cwd . root', {stdio: 'ignore'});
     return true;
   } catch (e) {
     return false;
   }
 }
 
-function tryGitInit(appPath) {
+function tryGitInit (appPath) {
   let didInit = false;
   try {
-    execSync('git --version', { stdio: 'ignore' });
+    execSync('git --version', {stdio: 'ignore'});
     if (isInGitRepository() || isInMercurialRepository()) {
       return false;
     }
 
-    execSync('git init', { stdio: 'ignore' });
+    execSync('git init', {stdio: 'ignore'});
     didInit = true;
 
-    execSync('git add -A', { stdio: 'ignore' });
+    execSync('git add -A', {stdio: 'ignore'});
     execSync('git commit -m "Initial commit from Create React App"', {
       stdio: 'ignore',
     });
@@ -75,7 +75,7 @@ function tryGitInit(appPath) {
   }
 }
 
-module.exports = function(
+module.exports = function (
   appPath,
   appName,
   verbose,
@@ -86,7 +86,8 @@ module.exports = function(
     require.resolve(path.join(__dirname, '..', 'package.json'))
   );
   const appPackage = require(path.join(appPath, 'package.json'));
-  const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
+  // force the use of npm without having to pass an additional cli arg
+  const useYarn = false; // fs.existsSync(path.join(appPath, 'yarn.lock'));
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
@@ -99,7 +100,26 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
+    'format:fix': 'standard --fix',
+    lint: 'eslint --ext=js --ext=jsx .',
+    'lint:fix': 'eslint --ext=js --ext=jsx --fix .',
+    'precommit-msg': `echo Pre-commit checks...' && exit 0`
   };
+
+  // set up our standard formatting config
+  appPackage.standard = {
+    'parser': 'babel-eslint',
+    'globals': [],
+    'env': [],
+    'ignore': []
+  };
+
+  // add our precommit checks
+  appPackage['pre-commit'] = [
+    'precommit-msg',
+    'format:fix',
+    'lint:fix'
+  ];
 
   // Setup the eslint config
   appPackage.eslintConfig = {
@@ -112,6 +132,16 @@ module.exports = function(
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
+  );
+
+  // write our .env files to the root of the project
+  fs.writeFileSync(
+    path.join(appPath, '.env'),
+    'NODE_PATH=src'
+  );
+  fs.writeFileSync(
+    path.join(appPath, '.env.example'),
+    'NODE_PATH=src'
   );
 
   const readmeExists = fs.existsSync(path.join(appPath, 'README.md'));
@@ -167,6 +197,7 @@ module.exports = function(
   args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
+  console.log(appPath);
   const templateDependenciesPath = path.join(
     appPath,
     '.template.dependencies.json'
@@ -181,18 +212,13 @@ module.exports = function(
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  // Install react and react-dom for backward compatibility with old CRA cli
-  // which doesn't install react and react-dom along with react-scripts
-  // or template is presetend (via --internal-testing-template)
-  if (!isReactInstalled(appPackage) || template) {
-    console.log(`Installing react and react-dom using ${command}...`);
-    console.log();
+  console.log(`Installing react and our custom dependencies using ${command}...`);
+  console.log();
 
-    const proc = spawn.sync(command, args, { stdio: 'inherit' });
-    if (proc.status !== 0) {
-      console.error(`\`${command} ${args.join(' ')}\` failed`);
-      return;
-    }
+  const proc = spawn.sync(command, args, {stdio: 'inherit'});
+  if (proc.status !== 0) {
+    console.error(`\`${command} ${args.join(' ')}\` failed`);
+    return;
   }
 
   if (useTypeScript) {
@@ -217,6 +243,7 @@ module.exports = function(
   // Change displayed command to yarn instead of yarnpkg
   const displayedCommand = useYarn ? 'yarn' : 'npm';
 
+  console.log('AWESOME SAUCE!!!!!!!!!!!!!!!!');
   console.log();
   console.log(`Success! Created ${appName} at ${appPath}`);
   console.log('Inside that directory, you can run several commands:');
@@ -257,12 +284,3 @@ module.exports = function(
   console.log();
   console.log('Happy hacking!');
 };
-
-function isReactInstalled(appPackage) {
-  const dependencies = appPackage.dependencies || {};
-
-  return (
-    typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined'
-  );
-}

@@ -1,0 +1,17 @@
+.global-error-boundary {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  transform: translateY(-50%)
+}
+
+.global-error__img {
+  margin-bottom: 40px;
+}
+
+.global-error__uuid {
+  color: $errorColor;
+  margin: 40px 0;
+}
