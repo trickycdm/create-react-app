@@ -8,5 +8,5 @@
 + added react router and example
 + added GlobalErrorBoundary component
 + added setupTests.js to enable enzyme
-+ added standard formatter
++ added semistandard formatter
 + added .env files
