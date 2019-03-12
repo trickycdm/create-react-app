@@ -1,7 +1,7 @@
-const Addresses = jest.genMockFromModule('../Addresses').default
+const Addresses = jest.genMockFromModule('../Addresses').default;
 
 Addresses.partialAddressSearch = () => {
-  return { addressData: [{ line1: '123' }] }
-}
+  return { addressData: [{ line1: '123' }] };
+};
 
-export default Addresses
+export default Addresses;

@@ -1,4 +1,4 @@
-import { create } from 'apisauce'
+import { create } from 'apisauce';
 
 // define the api, env vars are set in the .env file
 export const v1Api = create({
@@ -7,7 +7,7 @@ export const v1Api = create({
     'x-api-key': 'supersecretapikey',
     'x-user-token': 'someJWT'
   }
-})
+});
 
 /**
  * Response Transform:
@@ -15,8 +15,8 @@ export const v1Api = create({
  */
 v1Api.addResponseTransform(response => {
   // Handle any missing resources
-  if (response.status === 404) response.data = { error: true, message: 'We could not find the resource you were looking for.' }
+  if (response.status === 404) response.data = { error: true, message: 'We could not find the resource you were looking for.' };
 
   // Handle anything permission based from a 401 response from the API
-  if (response.status === 401) response.data = { error: true, message: 'You do not have permission to view this resource' }
-})
+  if (response.status === 401) response.data = { error: true, message: 'You do not have permission to view this resource' };
+});

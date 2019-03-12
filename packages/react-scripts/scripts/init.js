@@ -99,17 +99,21 @@ module.exports = function (
     build: 'react-scripts build',
     test: 'react-scripts test',
     eject: 'react-scripts eject',
-    'format:fix': 'standard --fix',
+    'format:fix': 'semistandard --fix',
     lint: 'eslint --ext=js --ext=jsx .',
     'lint:fix': 'eslint --ext=js --ext=jsx --fix .',
     'precommit-msg': `echo Pre-commit checks...' && exit 0`
   };
 
   // set up our standard formatting config
-  appPackage.standard = {
+  appPackage.semistandard = {
     'parser': 'babel-eslint',
     'globals': [],
-    'env': [],
+    'env': [
+      "jest",
+      "browser",
+      "node"
+    ],
     'ignore': []
   };
 

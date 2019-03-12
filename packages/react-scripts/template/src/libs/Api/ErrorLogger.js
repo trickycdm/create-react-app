@@ -1,4 +1,4 @@
-import { v1Api } from 'Libs/Api/Api.js'
+import { v1Api } from 'Libs/Api/Api.js';
 
 /**
  * Send some data to our server to store. This is generally only called in the react ErrorBoundaries to send data back to the server.
@@ -11,11 +11,11 @@ export async function logClientSideError (jsError, userId) {
     user: userId,
     message: jsError.message,
     stack: jsError.stack
-  }
-  const resp = await v1Api.post(`/api/v1/log/error`, { error })
-  if (resp.ok) return resp.data
+  };
+  const resp = await v1Api.post(`/api/v1/log/error`, { error });
+  if (resp.ok) return resp.data;
   else {
-    console.error(resp.problem)
-    return resp.data
+    console.error(resp.problem);
+    return resp.data;
   }
 }

@@ -12,5 +12,5 @@ export async function validateToken (token) {
     Cookies.set('fake_user_token', 123);
   }
   // const resp = await v1Api.post(AUTH_ENDPOINT, {token});
-  return {status: 'valid'};
+  return { status: 'valid' };
 }

@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import Unauthorized from 'containers/Unauthorized/Unauthorized';
 import { validateToken } from 'libs/Api/Users';
 
-function AuthenticatedRoute ({component: Component, ...rest}) {
+function AuthenticatedRoute ({ component: Component, ...rest }) {
   const [authenticated, setAuth] = useState('invalid');
   useEffect(() => {
     validateToken().then(resp => setAuth(resp.status));

@@ -1,21 +1,21 @@
 const initialState = {
   isExample: {
-    redux: true, 
+    redux: true,
     stuff: false
   }
-}
+};
 
 /*
  * Types
  */
-const UPDATE = 'EmailManagement/UPDATE'
+const UPDATE = 'EmailManagement/UPDATE';
 
 /*
  * Actions
  */
 
 export function update (example) {
-  return { type: UPDATE, example }
+  return { type: UPDATE, example };
 }
 
 /*
@@ -27,9 +27,9 @@ export default function ExampleReducer (state = initialState, action) {
       return {
         ...state,
         isExample: { ...action.example }
-      }
+      };
     }
     default:
-      return state
+      return state;
   }
 }

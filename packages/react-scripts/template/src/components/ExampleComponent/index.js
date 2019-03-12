@@ -1,15 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { someFunc } from './controller'
+import React from 'react';
+import { someFunc } from './controller';
 
 class ExampleComponent extends React.Component {
   constructor (props) {
-    super(props)
+    super(props);
     this.state = {
       search: '',
       loading: false,
       results: []
-    }
+    };
   }
 
   handleSearch = e => this.setState({ search: e.target.value })
@@ -17,11 +16,11 @@ class ExampleComponent extends React.Component {
 
   handleSubmit = async e => {
     try {
-      e.preventDefault()
+      e.preventDefault();
       console.log('event fired....');
-      someFunc(123)
+      someFunc(123);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
@@ -29,12 +28,12 @@ class ExampleComponent extends React.Component {
     return (
       <>
         <form onSubmit={this.handleSubmit} >
-          <input type="text" name={'search'} onChange={this.handleSearch} value={this.state.search || ''} />
+          <input type='text' name={'search'} onChange={this.handleSearch} value={this.state.search || ''} />
           <button onClick={this.clearSearch}>Clear Search</button>
         </form>
       </>
-    )
+    );
   }
 }
 
-export default ExampleComponent
+export default ExampleComponent;
