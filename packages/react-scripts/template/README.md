@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with a fork of [Create React App](https://github.com/facebook/create-react-app).
+
+## Changelog
+### v1.0.0
++ added default dependencies
++ added new folder structure
++ added example of components and test structure
++ added example of Ducks Redux format
++ added react router and example
++ added GlobalErrorBoundary component
++ added setupTests.js to enable enzyme
++ added semistandard formatter
++ added .env files
 
 ## Available Scripts
 

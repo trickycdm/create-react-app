@@ -146,6 +146,11 @@ module.exports = function (
     path.join(appPath, '.env.example'),
     'NODE_PATH=src'
   );
+  // create our .npmrc file
+  fs.writeFileSync(
+    path.join(appPath, '.npmrc'),
+    'save-exact=true'
+  );
 
   const readmeExists = fs.existsSync(path.join(appPath, 'README.md'));
   if (readmeExists) {
