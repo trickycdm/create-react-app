@@ -8,6 +8,7 @@ if you got this far you already have the generator running. For reference the co
 ## Changelog
 ### v1.0.0
 + added default dependencies
++ added pre-push config
 + added new folder structure
 + added example of components and test structure
 + added example of Ducks Redux format

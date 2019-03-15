@@ -102,7 +102,7 @@ module.exports = function (
     'format:fix': 'semistandard --fix',
     lint: 'eslint --ext=js --ext=jsx .',
     'lint:fix': 'eslint --ext=js --ext=jsx --fix .',
-    'precommit-msg': `echo Pre-commit checks...' && exit 0`
+    'prepush-msg': `echo Pre-push checks...' && exit 0`
   };
 
   // set up our standard formatting config
@@ -118,8 +118,8 @@ module.exports = function (
   };
 
   // add our precommit checks
-  appPackage['pre-commit'] = [
-    'precommit-msg',
+  appPackage['pre-push'] = [
+    'prepush-msg',
     'format:fix',
     'lint:fix'
   ];
