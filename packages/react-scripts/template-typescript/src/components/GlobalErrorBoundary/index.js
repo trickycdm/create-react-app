@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-class GlobalErrorBoundary extends React.Component {
+class Index extends React.Component {
   constructor (props) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   componentDidCatch = async (error, info) => {
     // You can also log the error to an error reporting service
-    console.log(error)
-    console.log(info)
-    const errorUuid = 123 // set a dynamic error id here and sync with server side
-    this.setState({ hasError: true, errorUuid })
+    console.log(error);
+    console.log(info);
+    const errorUuid = 123; // set a dynamic error id here and sync with server side
+    this.setState({ hasError: true, errorUuid });
   }
 
   render () {
@@ -26,10 +26,10 @@ class GlobalErrorBoundary extends React.Component {
             <button buttonClass={'generic'}>Back to application....</button>
           </a>
         </div>
-      )
+      );
     }
-    return this.props.children
+    return this.props.children;
   }
 }
 
-export default GlobalErrorBoundary
+export default Index;
