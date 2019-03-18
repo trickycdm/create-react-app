@@ -2,11 +2,14 @@
 This package allows you to create a bootastrapped React project. It is forked from Create React App with a few important additions. 
 
 You can find the original docs here:
-- [Create React App](https://github.com/facebook/create-react-app).<br>
+- [Create React App](https://github.com/facebook/create-react-app) - General info about CRA
 - [Getting Started](https://facebook.github.io/create-react-app/docs/getting-started) – How to create a new app.
 - [User Guide](https://facebook.github.io/create-react-app/) – How to develop apps bootstrapped with Create React App.
 
 ## Changelog
+Our changes are independently versioned. This allows us to track our changes and the main CRA project.
+
+We will pull in CRA changes on a regular basis. The keep breaking changes to a minimum.  
 ### v1.0.0
 + added default dependencies (see default dependencies section)
 + added pre-push config
@@ -21,10 +24,14 @@ You can find the original docs here:
 + added .npmrc file to save-exact
 
 ## New Project via the CLI
-`npx create-react-app <projectName> --use-npm --scripts-version <custom-react-scripts>`
+```
+npx create-react-app <projectName> --use-npm --scripts-version <custom-react-scripts>
+```
 
-## Default packages
-There have been various default packages added to try and unify the way we done things. A rational for each is below.
+## Additional Default packages
+CRA comes bundled with lots of it's own default dependencies. You can see them in the *-react-scripts npm package. 
+
+We add a few more to try and unify the way we done things. A rational for each is below.
  
 + [apisauce](https://www.npmjs.com/package/js-cookie) - Built ontop of axios, it is included to standardise any HTTP calls. Eventually there will be a standard API connector built from this, so any microservice calls written should be modular and exportable. 
 + [js-cookie](https://www.npmjs.com/package/js-cookie) - a nice way to handle cookies 
