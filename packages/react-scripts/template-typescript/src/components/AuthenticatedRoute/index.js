@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import Unauthorized from 'containers/Unauthorized/Unauthorized';
-import { validateToken } from 'libs/Api/Users';
+import { validateToken } from 'libs/api/Users';
 
 function AuthenticatedRoute ({ component: Component, ...rest }) {
   const [authenticated, setAuth] = useState('invalid');

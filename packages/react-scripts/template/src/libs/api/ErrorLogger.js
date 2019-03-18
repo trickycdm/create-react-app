@@ -1,4 +1,4 @@
-import { v1Api } from 'Libs/Api/Api.js';
+import { v1Api } from 'Libs/api/api.js';
 
 /**
  * Send some data to our server to store. This is generally only called in the react ErrorBoundaries to send data back to the server.

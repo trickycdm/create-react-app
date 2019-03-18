@@ -1,4 +1,4 @@
-import { v1Api } from 'Libs/Api/Api';
+import { v1Api } from 'Libs/api/api';
 
 export async function partialAddressSearch (search) {
   const resp = await v1Api.post(`/api/v1/addresses/search/partial`, { search });

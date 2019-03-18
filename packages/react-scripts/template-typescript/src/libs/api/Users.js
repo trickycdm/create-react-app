@@ -1,7 +1,7 @@
 /**
  * An example of using apisauce with another lib, commented out as we dont have aany backend services to talk to.
  */
-// import { v1Api } from './Api.js';
+// import { v1Api } from './api.js';
 import Cookies from 'js-cookie';
 
 // const AUTH_ENDPOINT = 'http://localhost/auth';
