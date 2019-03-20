@@ -202,7 +202,6 @@ module.exports = function (
     command = 'npm';
     args = ['install', '--save', verbose && '--verbose'].filter(e => e);
   }
-  args.push('react', 'react-dom');
 
   // Install additional template dependencies, if present
   console.log(appPath);
@@ -220,7 +219,7 @@ module.exports = function (
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  console.log(`Installing react and our custom dependencies using ${command}...`);
+  console.log(`Installing react 15 and our custom dependencies using ${command}...`);
   console.log();
 
   const proc = spawn.sync(command, args, {stdio: 'inherit'});
