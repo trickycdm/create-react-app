@@ -5,6 +5,9 @@ if you got this far you already have the generator running. For reference the co
 ```angular2
     npx create-react-app <projectName> --use-npm --scripts-version trickycdm-react-scripts
 ```
+
+You can also add --typescript if you want the typescript version. 
+
 ## Changelog
 ### v1.0.0
 + added default dependencies
