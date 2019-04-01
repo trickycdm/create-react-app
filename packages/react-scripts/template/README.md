@@ -26,7 +26,6 @@ You can also add --typescript if you want the typescript version.
 + apisauce/axios - Included to standardise any HTTP calls. Eventually there will be a standard API connector built from this, so any microservice calls written should be modular and exportable. 
 
 ## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
